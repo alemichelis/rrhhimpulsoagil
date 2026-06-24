@@ -725,3 +725,146 @@ body {
   font-size: 13px;
   border: 1px solid var(--border);
 }
+
+/* ── HAMBURGER BUTTON ───────────────────────────── */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  color: white;
+  font-size: 22px;
+  line-height: 1;
+  margin-right: 6px;
+}
+
+/* ── SIDEBAR OVERLAY (mobile) ───────────────────── */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 199;
+}
+.sidebar-overlay.active { display: block; }
+
+/* ══════════════════════════════════════════════════
+   TABLET  (≤ 1024px)
+══════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .sidebar { width: 185px; min-width: 185px; }
+  .main-content { padding: 16px; }
+  .page-header { flex-wrap: wrap; gap: 10px; }
+  .header-actions { flex-wrap: wrap; gap: 6px; }
+  .modal-box.wide { width: 96vw; }
+  .ficha-grid { grid-template-columns: 1fr 1fr; }
+  .data-table.compact th,
+  .data-table.compact td { font-size: 11px; padding: 6px 8px; }
+}
+
+/* ══════════════════════════════════════════════════
+   MOBILE  (≤ 680px)
+══════════════════════════════════════════════════ */
+@media (max-width: 680px) {
+
+  /* Body / layout */
+  body { font-size: 15px; }
+  #app-screen { flex-direction: column; }
+
+  /* Hamburger visible */
+  .hamburger { display: block; }
+
+  /* Sidebar: drawer oculto por defecto */
+  .sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    width: 240px;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform .25s ease;
+  }
+  .sidebar.open { transform: translateX(0); }
+
+  /* Top bar fija en mobile */
+  .mobile-topbar {
+    display: flex;
+    align-items: center;
+    background: var(--sidebar-bg);
+    padding: 10px 14px;
+    gap: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-shrink: 0;
+  }
+  .mobile-topbar .sb-impulso,
+  .mobile-topbar .sb-agil { font-size: 16px; }
+
+  /* Main content: scroll independiente */
+  .main-content {
+    padding: 12px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  /* Login card full width */
+  .login-card { width: 94vw; padding: 28px 20px; }
+  .brand-impulso, .brand-agil { font-size: 22px; }
+
+  /* Page header apilado */
+  .page-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .header-actions { width: 100%; display: flex; flex-wrap: wrap; gap: 6px; }
+  .header-actions .btn { flex: 1; min-width: 120px; justify-content: center; }
+
+  /* Tablas: scroll horizontal */
+  .card { overflow-x: auto; }
+  .data-table th, .data-table td { white-space: nowrap; }
+
+  /* Form grid: 1 columna */
+  .form-grid { grid-template-columns: 1fr; }
+
+  /* Toolbar apilado */
+  .toolbar { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .select-control { width: 100%; }
+
+  /* Modal: casi full screen */
+  .modal-box,
+  .modal-box.wide {
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 96vh;
+    border-radius: 12px 12px 0 0;
+    align-self: flex-end;
+  }
+  .modal-overlay { align-items: flex-end; }
+  .modal-footer { flex-direction: column; gap: 8px; }
+  .modal-footer .btn { width: 100%; justify-content: center; }
+
+  /* Ficha grid: 1 columna */
+  .ficha-grid { grid-template-columns: 1fr; }
+  .ficha-search-bar { flex-wrap: wrap; }
+  .ficha-search-bar input { width: 100%; }
+
+  /* Botones acción en tabla */
+  .actions-cell { flex-direction: column; gap: 4px; }
+  .actions-cell .btn { width: 100%; justify-content: center; }
+
+  /* Tabs scrollables */
+  .tabs { overflow-x: auto; flex-wrap: nowrap; }
+  .tabs .tab-btn { white-space: nowrap; }
+
+  /* Profile header */
+  .profile-header-card { flex-direction: column; text-align: center; }
+  .profile-meta { justify-content: center; }
+
+  /* Organigrama scroll */
+  .org-scroll { overflow-x: auto; }
+
+  /* Ocultar columnas menos importantes en mobile */
+  .data-table .hide-mobile { display: none; }
+
+  /* Baja / Ficha search bars */
+  .ficha-search-bar .select-control { width: 100%; }
+}

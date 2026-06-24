@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Impulso Ágil — Sistema de Recursos Humanos</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -54,7 +55,18 @@
 <!-- ── APP ────────────────────────────────────────────────────────── -->
 <div id="app-screen" class="screen">
 
-  <aside class="sidebar">
+  <!-- Top bar visible solo en mobile -->
+  <div class="mobile-topbar" id="mobile-topbar" style="display:none">
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    <div class="sidebar-brand-mark">
+      <span class="sb-impulso">IMPULSO</span><span class="sb-agil">ÁGIL</span>
+    </div>
+  </div>
+
+  <!-- Overlay oscuro al abrir sidebar en mobile -->
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+  <aside class="sidebar" id="main-sidebar">
     <div class="sidebar-header">
       <div class="sidebar-brand-mark">
         <span class="sb-impulso">IMPULSO</span><span class="sb-agil">ÁGIL</span>
@@ -131,8 +143,12 @@
         <table class="data-table">
           <thead>
             <tr>
-              <th>Legajo</th><th>Apellido y Nombre</th><th>CUIL</th>
-              <th>Cargo</th><th>Sector</th><th>Lugar</th><th>Tipo</th>
+              <th>Legajo</th><th>Apellido y Nombre</th>
+              <th class="hide-mobile">CUIL</th>
+              <th class="hide-mobile">Cargo</th>
+              <th class="hide-mobile">Sector</th>
+              <th class="hide-mobile">Lugar</th>
+              <th class="hide-mobile">Tipo</th>
               <th>Estado</th><th style="width:130px">Acciones</th>
             </tr>
           </thead>

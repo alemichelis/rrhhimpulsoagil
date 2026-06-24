@@ -22,11 +22,11 @@ async function loadEmpleados() {
     <tr style="${estado === 'inactivo' ? 'opacity:.65' : ''}">
       <td><strong>${esc(e.legajo)}</strong></td>
       <td>${esc(e.apellido_nombre)}</td>
-      <td style="color:var(--text-muted)">${esc(e.cuil) || '-'}</td>
-      <td>${esc(e.cargo) || '-'}</td>
-      <td>${esc(e.sector) || '-'}</td>
-      <td>${esc(e.lugar_trabajo) || '-'}</td>
-      <td><span class="tipo-badge">${esc(e.tipo_empleado) || '-'}</span></td>
+      <td class="hide-mobile" style="color:var(--text-muted)">${esc(e.cuil) || '-'}</td>
+      <td class="hide-mobile">${esc(e.cargo) || '-'}</td>
+      <td class="hide-mobile">${esc(e.sector) || '-'}</td>
+      <td class="hide-mobile">${esc(e.lugar_trabajo) || '-'}</td>
+      <td class="hide-mobile"><span class="tipo-badge">${esc(e.tipo_empleado) || '-'}</span></td>
       <td>${estadoBadge}</td>
       <td class="actions-cell">
         <button class="btn btn-secondary btn-sm"

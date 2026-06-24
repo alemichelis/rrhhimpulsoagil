@@ -3,9 +3,33 @@ const state = { user: null, role: null, legajo: null };
 
 // ── INIT ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', async () => {
+  setupMobileLayout();
+  window.addEventListener('resize', setupMobileLayout);
   const sesion = await py('get_sesion');
   if (sesion && sesion.usuario) applySession(sesion);
 });
+
+// ── MOBILE LAYOUT ─────────────────────────────────
+function setupMobileLayout() {
+  const isMobile = window.innerWidth <= 680;
+  const topbar   = document.getElementById('mobile-topbar');
+  const sidebar  = document.getElementById('main-sidebar');
+  if (topbar)  topbar.style.display  = isMobile ? 'flex' : 'none';
+  if (sidebar) {
+    sidebar.style.display = 'flex';
+    if (!isMobile) {
+      sidebar.classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('active');
+    }
+  }
+}
+
+function toggleSidebar() {
+  const sidebar  = document.getElementById('main-sidebar');
+  const overlay  = document.getElementById('sidebar-overlay');
+  const isOpen   = sidebar.classList.toggle('open');
+  overlay.classList.toggle('active', isOpen);
+}
 
 // ── HELPER API ────────────────────────────────────
 async function py(method, ...args) {
@@ -114,6 +138,12 @@ function showModule(mod) {
   if (mod === 'm1') loadParametros();
   if (mod === 'm2') loadEmpleados();
   if (mod === 'm4') loadConsolidado();
+
+  // Cerrar sidebar en mobile al navegar
+  if (window.innerWidth <= 680) {
+    document.getElementById('main-sidebar').classList.remove('open');
+    document.getElementById('sidebar-overlay').classList.remove('active');
+  }
 }
 
 // ── MODAL GENÉRICO ────────────────────────────────
